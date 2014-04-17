@@ -40,6 +40,6 @@ Please contribute to the project if you can. My aim is to produce an easy drop-i
 Credits
 -------------
 Many concepts (and some code) borrowed from the following sources:
-http://wildbunny.co.uk/blog/2011/12/14/how-to-make-a-2d-platform-game-part-2-collision-detection/ (Speculative contacts)
-http://conkerjo.wordpress.com/2009/06/13/spatial-hashing-implementation-for-fast-2d-collisions/ (Spatial hashing)
-https://github.com/raywenderlich/SKTUtils (CGPoint math)
+http://wildbunny.co.uk/blog/2011/12/14/how-to-make-a-2d-platform-game-part-2-collision-detection/ (Speculative contacts)  
+http://conkerjo.wordpress.com/2009/06/13/spatial-hashing-implementation-for-fast-2d-collisions/ (Spatial hashing)  
+https://github.com/raywenderlich/SKTUtils (CGPoint math)  
