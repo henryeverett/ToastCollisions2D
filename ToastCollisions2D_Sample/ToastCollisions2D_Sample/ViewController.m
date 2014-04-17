@@ -7,25 +7,32 @@
 //
 
 #import "ViewController.h"
+#import "JSTileMap.h"
 #import "MyScene.h"
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (id)init {
+    
+    if (self = [super init]) {
+        SKView *spriteKitView = [[SKView alloc] init];
+        spriteKitView.showsFPS = YES;
+        spriteKitView.showsNodeCount = YES;
+        self.view = spriteKitView;
+    }
+    return self;
+}
 
-    // Configure the view.
-    SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
+- (void)viewDidAppear:(BOOL)animated {
     
-    // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    [super viewDidAppear:animated];
     
-    // Present the scene.
-    [skView presentScene:scene];
+    // TODO: Load from level map array
+    MyScene *scene = [[MyScene alloc] initWithSize:self.view.bounds.size];
+    scene.map = [JSTileMap mapNamed:@"map.tmx"];
+    
+    [(SKView *)self.view presentScene:scene];
+    
 }
 
 - (BOOL)shouldAutorotate

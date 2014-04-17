@@ -14,16 +14,24 @@
 		833898C1190047F000240428 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 833898BF190047F000240428 /* InfoPlist.strings */; };
 		833898C3190047F000240428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 833898C2190047F000240428 /* main.m */; };
 		833898C7190047F000240428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833898C6190047F000240428 /* AppDelegate.m */; };
-		833898CA190047F000240428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833898C8190047F000240428 /* Main.storyboard */; };
 		833898CD190047F000240428 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833898CC190047F000240428 /* ViewController.m */; };
 		833898D0190047F000240428 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 833898CF190047F000240428 /* MyScene.m */; };
-		833898D2190047F000240428 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 833898D1190047F000240428 /* Spaceship.png */; };
-		833898D4190047F000240428 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833898D3190047F000240428 /* Images.xcassets */; };
 		833898DB190047F000240428 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833898DA190047F000240428 /* XCTest.framework */; };
 		833898DC190047F000240428 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833898B4190047F000240428 /* Foundation.framework */; };
 		833898DD190047F000240428 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833898B8190047F000240428 /* UIKit.framework */; };
-		833898E5190047F000240428 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 833898E3190047F000240428 /* InfoPlist.strings */; };
-		833898E7190047F000240428 /* ToastCollisions2D_SampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833898E6190047F000240428 /* ToastCollisions2D_SampleTests.m */; };
+		8338995F19004F4C00240428 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 8338995D19004F4C00240428 /* map.tmx */; };
+		8338996019004F4C00240428 /* tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 8338995E19004F4C00240428 /* tiles.png */; };
+		8338996E190052D100240428 /* SKSpriteNode+TC_CollisionSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 83389963190052D100240428 /* SKSpriteNode+TC_CollisionSubject.m */; };
+		8338996F190052D100240428 /* TC_Collision.m in Sources */ = {isa = PBXBuildFile; fileRef = 83389966190052D100240428 /* TC_Collision.m */; };
+		83389970190052D100240428 /* TC_CollisionDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 83389968190052D100240428 /* TC_CollisionDetector.m */; };
+		83389971190052D100240428 /* TC_CollisionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338996A190052D100240428 /* TC_CollisionResponse.m */; };
+		83389972190052D100240428 /* TC_SpatialCollisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338996D190052D100240428 /* TC_SpatialCollisionManager.m */; };
+		833899791900548E00240428 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 833899781900548E00240428 /* LFCGzipUtility.m */; };
+		8338997F190054EB00240428 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8338997E190054EB00240428 /* libz.dylib */; };
+		833899811900634C00240428 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833899801900634C00240428 /* Images.xcassets */; };
+		833899841900648600240428 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 833899831900648600240428 /* Player.m */; };
+		8338998719006EF000240428 /* SKSpriteNode+Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8338998619006EF000240428 /* SKSpriteNode+Tile.m */; };
+		8338998A1900717F00240428 /* JSTileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 833899891900717F00240428 /* JSTileMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,18 +56,36 @@
 		833898C4190047F000240428 /* ToastCollisions2D_Sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ToastCollisions2D_Sample-Prefix.pch"; sourceTree = "<group>"; };
 		833898C5190047F000240428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		833898C6190047F000240428 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		833898C9190047F000240428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		833898CB190047F000240428 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		833898CC190047F000240428 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		833898CE190047F000240428 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
 		833898CF190047F000240428 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
-		833898D1190047F000240428 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
-		833898D3190047F000240428 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		833898D9190047F000240428 /* ToastCollisions2D_SampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToastCollisions2D_SampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		833898DA190047F000240428 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		833898E2190047F000240428 /* ToastCollisions2D_SampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ToastCollisions2D_SampleTests-Info.plist"; sourceTree = "<group>"; };
-		833898E4190047F000240428 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		833898E6190047F000240428 /* ToastCollisions2D_SampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToastCollisions2D_SampleTests.m; sourceTree = "<group>"; };
+		8338995D19004F4C00240428 /* map.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map.tmx; sourceTree = "<group>"; };
+		8338995E19004F4C00240428 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		83389962190052D100240428 /* SKSpriteNode+TC_CollisionSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+TC_CollisionSubject.h"; sourceTree = "<group>"; };
+		83389963190052D100240428 /* SKSpriteNode+TC_CollisionSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+TC_CollisionSubject.m"; sourceTree = "<group>"; };
+		83389964190052D100240428 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
+		83389965190052D100240428 /* TC_Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_Collision.h; sourceTree = "<group>"; };
+		83389966190052D100240428 /* TC_Collision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_Collision.m; sourceTree = "<group>"; };
+		83389967190052D100240428 /* TC_CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_CollisionDetector.h; sourceTree = "<group>"; };
+		83389968190052D100240428 /* TC_CollisionDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_CollisionDetector.m; sourceTree = "<group>"; };
+		83389969190052D100240428 /* TC_CollisionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_CollisionResponse.h; sourceTree = "<group>"; };
+		8338996A190052D100240428 /* TC_CollisionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_CollisionResponse.m; sourceTree = "<group>"; };
+		8338996B190052D100240428 /* TC_Direction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_Direction.h; sourceTree = "<group>"; };
+		8338996C190052D100240428 /* TC_SpatialCollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TC_SpatialCollisionManager.h; sourceTree = "<group>"; };
+		8338996D190052D100240428 /* TC_SpatialCollisionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TC_SpatialCollisionManager.m; sourceTree = "<group>"; };
+		833899771900548E00240428 /* LFCGzipUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LFCGzipUtility.h; path = JSTileMap/LFCGzipUtility.h; sourceTree = SOURCE_ROOT; };
+		833899781900548E00240428 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFCGzipUtility.m; path = JSTileMap/LFCGzipUtility.m; sourceTree = SOURCE_ROOT; };
+		8338997E190054EB00240428 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		833899801900634C00240428 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		833899821900648600240428 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		833899831900648600240428 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		8338998519006EF000240428 /* SKSpriteNode+Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+Tile.h"; sourceTree = "<group>"; };
+		8338998619006EF000240428 /* SKSpriteNode+Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+Tile.m"; sourceTree = "<group>"; };
+		833899881900717F00240428 /* JSTileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSTileMap.h; path = JSTileMap/JSTileMap.h; sourceTree = "<group>"; };
+		833899891900717F00240428 /* JSTileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSTileMap.m; path = JSTileMap/JSTileMap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8338997F190054EB00240428 /* libz.dylib in Frameworks */,
 				833898B7190047F000240428 /* CoreGraphics.framework in Frameworks */,
 				833898B9190047F000240428 /* UIKit.framework in Frameworks */,
 				833898BB190047F000240428 /* SpriteKit.framework in Frameworks */,
@@ -91,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				833898BC190047F000240428 /* ToastCollisions2D_Sample */,
-				833898E0190047F000240428 /* ToastCollisions2D_SampleTests */,
 				833898B3190047F000240428 /* Frameworks */,
 				833898B2190047F000240428 /* Products */,
 			);
@@ -109,11 +135,14 @@
 		833898B3190047F000240428 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8338997D190054A500240428 /* JSTileMap */,
+				83389961190052D100240428 /* ToastCollisions2D */,
 				833898B4190047F000240428 /* Foundation.framework */,
 				833898B6190047F000240428 /* CoreGraphics.framework */,
 				833898B8190047F000240428 /* UIKit.framework */,
 				833898BA190047F000240428 /* SpriteKit.framework */,
 				833898DA190047F000240428 /* XCTest.framework */,
+				8338997E190054EB00240428 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,13 +152,16 @@
 			children = (
 				833898C5190047F000240428 /* AppDelegate.h */,
 				833898C6190047F000240428 /* AppDelegate.m */,
-				833898C8190047F000240428 /* Main.storyboard */,
 				833898CB190047F000240428 /* ViewController.h */,
 				833898CC190047F000240428 /* ViewController.m */,
 				833898CE190047F000240428 /* MyScene.h */,
 				833898CF190047F000240428 /* MyScene.m */,
-				833898D1190047F000240428 /* Spaceship.png */,
-				833898D3190047F000240428 /* Images.xcassets */,
+				833899821900648600240428 /* Player.h */,
+				833899831900648600240428 /* Player.m */,
+				8338998519006EF000240428 /* SKSpriteNode+Tile.h */,
+				8338998619006EF000240428 /* SKSpriteNode+Tile.m */,
+				8338995D19004F4C00240428 /* map.tmx */,
+				8338995E19004F4C00240428 /* tiles.png */,
 				833898BD190047F000240428 /* Supporting Files */,
 			);
 			path = ToastCollisions2D_Sample;
@@ -138,6 +170,7 @@
 		833898BD190047F000240428 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				833899801900634C00240428 /* Images.xcassets */,
 				833898BE190047F000240428 /* ToastCollisions2D_Sample-Info.plist */,
 				833898BF190047F000240428 /* InfoPlist.strings */,
 				833898C2190047F000240428 /* main.m */,
@@ -146,22 +179,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		833898E0190047F000240428 /* ToastCollisions2D_SampleTests */ = {
+		83389961190052D100240428 /* ToastCollisions2D */ = {
 			isa = PBXGroup;
 			children = (
-				833898E6190047F000240428 /* ToastCollisions2D_SampleTests.m */,
-				833898E1190047F000240428 /* Supporting Files */,
+				83389962190052D100240428 /* SKSpriteNode+TC_CollisionSubject.h */,
+				83389963190052D100240428 /* SKSpriteNode+TC_CollisionSubject.m */,
+				83389964190052D100240428 /* SKTUtils.h */,
+				83389965190052D100240428 /* TC_Collision.h */,
+				83389966190052D100240428 /* TC_Collision.m */,
+				83389967190052D100240428 /* TC_CollisionDetector.h */,
+				83389968190052D100240428 /* TC_CollisionDetector.m */,
+				83389969190052D100240428 /* TC_CollisionResponse.h */,
+				8338996A190052D100240428 /* TC_CollisionResponse.m */,
+				8338996B190052D100240428 /* TC_Direction.h */,
+				8338996C190052D100240428 /* TC_SpatialCollisionManager.h */,
+				8338996D190052D100240428 /* TC_SpatialCollisionManager.m */,
 			);
-			path = ToastCollisions2D_SampleTests;
+			name = ToastCollisions2D;
+			path = ../ToastCollisions2D;
 			sourceTree = "<group>";
 		};
-		833898E1190047F000240428 /* Supporting Files */ = {
+		8338997D190054A500240428 /* JSTileMap */ = {
 			isa = PBXGroup;
 			children = (
-				833898E2190047F000240428 /* ToastCollisions2D_SampleTests-Info.plist */,
-				833898E3190047F000240428 /* InfoPlist.strings */,
+				833899881900717F00240428 /* JSTileMap.h */,
+				833899891900717F00240428 /* JSTileMap.m */,
+				833899771900548E00240428 /* LFCGzipUtility.h */,
+				833899781900548E00240428 /* LFCGzipUtility.m */,
 			);
-			name = "Supporting Files";
+			name = JSTileMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +287,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				833898C1190047F000240428 /* InfoPlist.strings in Resources */,
-				833898D4190047F000240428 /* Images.xcassets in Resources */,
-				833898D2190047F000240428 /* Spaceship.png in Resources */,
-				833898CA190047F000240428 /* Main.storyboard in Resources */,
+				833899811900634C00240428 /* Images.xcassets in Resources */,
+				8338995F19004F4C00240428 /* map.tmx in Resources */,
+				8338996019004F4C00240428 /* tiles.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +297,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833898E5190047F000240428 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83389970190052D100240428 /* TC_CollisionDetector.m in Sources */,
+				83389972190052D100240428 /* TC_SpatialCollisionManager.m in Sources */,
 				833898D0190047F000240428 /* MyScene.m in Sources */,
+				8338998A1900717F00240428 /* JSTileMap.m in Sources */,
+				8338996F190052D100240428 /* TC_Collision.m in Sources */,
+				833899841900648600240428 /* Player.m in Sources */,
+				8338996E190052D100240428 /* SKSpriteNode+TC_CollisionSubject.m in Sources */,
+				83389971190052D100240428 /* TC_CollisionResponse.m in Sources */,
+				833899791900548E00240428 /* LFCGzipUtility.m in Sources */,
+				8338998719006EF000240428 /* SKSpriteNode+Tile.m in Sources */,
 				833898CD190047F000240428 /* ViewController.m in Sources */,
 				833898C7190047F000240428 /* AppDelegate.m in Sources */,
 				833898C3190047F000240428 /* main.m in Sources */,
@@ -273,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833898E7190047F000240428 /* ToastCollisions2D_SampleTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,22 +345,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				833898C0190047F000240428 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		833898C8190047F000240428 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				833898C9190047F000240428 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		833898E3190047F000240428 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				833898E4190047F000240428 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
