@@ -23,6 +23,7 @@ Drop the ToastCollisions2D directory into your project and import.
     // ...calculate delta
     
     // ...apply velocity changes
+    // ** NOTE: Changes should be applied to the tcVelocity variable provided. **
     
     // ToastCollisions2D Collision detection
     [self.collisionDetector detectCollisionsBetweenNodes:self.allObjects withDelta:delta];
