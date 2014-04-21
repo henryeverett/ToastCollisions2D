@@ -10,11 +10,12 @@
 #define ToastCollisions2D_TC_Direction_h
 
 typedef NS_ENUM(NSUInteger, TC_Direction) {
+    none,
     left,
     right,
     up,
-    down,
-    none
+    down
+    
 };
 
 #endif
