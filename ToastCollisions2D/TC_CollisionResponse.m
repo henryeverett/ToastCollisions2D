@@ -49,16 +49,18 @@
 - (void)respondToStaticCollision:(TC_Collision *)collision {
     
     // Handle embeding by moving the node out of a collision until only 1 pixel embedded.
-    if (collision.distance < 0) {
-        self.delegate.position = CGPointAdd(self.delegate.position, CGPointMultiplyScalar(collision.normal, fabsf(collision.distance)-1));
+    if (collision.clampedDistance < 0) {
+        self.delegate.position = CGPointAdd(self.delegate.position, CGPointMultiplyScalar(collision.normal, fabsf(collision.clampedDistance)-1));
     }
 
     // If the anticipated velocity will cause a collision
     if (collision.normalVelocity < 0) {
         
-        if (collision.collidedWith.isSlope && (collision.direction == left || collision.direction == right)) {
+        if ((collision.collidedWith.isSlope && (collision.direction == left || collision.direction == right))
+            || [collision.collidedWith ignoresCollision:collision]) {
             
-            // Allow movement into sloped tiles.
+            // Do not prevent movement if the collision is with a slope or the collision is
+            // requested to be ignored for another reason. (eg. a one-way tile)
             
         } else {
             
@@ -101,7 +103,7 @@
             friction = collision.collidedWith.friction;
         }
         
-        if (friction != 0) {
+        if (friction != 0 && ![collision.collidedWith ignoresCollision:collision]) {
             
             // get the tanget from the normal
             CGPoint tangent = [self tangentOfPoint:collision.normal];

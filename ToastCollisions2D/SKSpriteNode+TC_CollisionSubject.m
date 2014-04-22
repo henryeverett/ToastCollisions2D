@@ -9,6 +9,7 @@
 #import "SKSpriteNode+TC_CollisionSubject.h"
 #import <objc/runtime.h>
 #import "TC_Direction.h"
+#import "TC_Collision.h"
 #import "SKTUtils.h"
 
 @implementation SKSpriteNode (TC_CollisionSubject)

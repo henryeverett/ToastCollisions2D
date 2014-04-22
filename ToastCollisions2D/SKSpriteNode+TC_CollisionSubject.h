@@ -23,6 +23,8 @@
 - (CGFloat)rightSlopeHeight;
 /* Define the height of the slope's left edge. */
 - (CGFloat)leftSlopeHeight;
+/* Check if collision response should ignore a direction. Can be used for one-way tiles. */
+- (BOOL)ignoresCollision:(TC_Collision *)collision;
 
 @end
 

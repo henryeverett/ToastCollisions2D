@@ -25,5 +25,9 @@
     return none;
 }
 
+- (CGFloat)clampedDistance {
+    return MAX(self.distance, 0);
+}
+
 
 @end

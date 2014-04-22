@@ -92,10 +92,10 @@
                     collision.collidedWith = nodeB;
                     collision.yAxisOnly = checkTall; // Pass in whether we are checking the tall or short section of the cross shape
                     collision.normal = [self normalFromRectA:nodeA.frame toRectB:nodeB.frame]; // Get the normal of the collision
-                    collision.distance = MAX(separationDistance, 0); // Clamp the distance to prevent a negative number
+                    collision.distance = separationDistance;
                     
                     // Get the normal velocity of nodeA
-                    collision.normalVelocity = [self dotProductOfPointA:nodeA.tcVelocity andPointB:collision.normal] + collision.distance/delta;
+                    collision.normalVelocity = [self dotProductOfPointA:nodeA.tcVelocity andPointB:collision.normal] + collision.clampedDistance/delta;
                     
                     // If a custom collision response has not been assigned, use the default
                     if (!nodeA.tcCollisionResponse) {

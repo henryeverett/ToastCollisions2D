@@ -19,5 +19,7 @@
 
 /* Convert the normal property into a direction value. */
 - (TC_Direction)direction;
+/* Return clamped distance to prevent a negative value. */
+- (CGFloat)clampedDistance;
 
 @end
