@@ -104,7 +104,7 @@
             friction = collision.collidedWith.friction;
         }
         
-        if (friction != 0 ||
+        if (friction != 0 &&
             ([collision.collidedWith respondsToSelector:@selector(ignoresCollision:)] && ![collision.collidedWith ignoresCollision:collision])) {
             
             // get the tanget from the normal
