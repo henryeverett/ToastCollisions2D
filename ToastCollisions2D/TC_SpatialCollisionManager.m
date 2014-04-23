@@ -62,7 +62,7 @@
 
     NSMutableArray *nodeBuckets = [[NSMutableArray alloc] init];
     
-    CGPoint positionInView = [node.scene convertPoint:node.frame.origin fromNode:node.parent];
+    CGPoint positionInView = node.position;
     
     // Get the four corner positions of the GameNode's frame.
     CGPoint nodeTopLeftCorner = positionInView;

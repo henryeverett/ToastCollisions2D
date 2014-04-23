@@ -7,6 +7,7 @@
 //
 
 #import "TC_CollisionResponse.h"
+#import "SKSpriteNode+TC_CollisionSubject.h"
 #import "TC_Collision.h"
 #import "SKTUtils.h"
 
@@ -57,7 +58,7 @@
     if (collision.normalVelocity < 0) {
         
         if ((collision.collidedWith.isSlope && (collision.direction == left || collision.direction == right))
-            || [collision.collidedWith ignoresCollision:collision]) {
+            || ([collision.collidedWith respondsToSelector:@selector(ignoresCollision:)] && [collision.collidedWith ignoresCollision:collision])) {
             
             // Do not prevent movement if the collision is with a slope or the collision is
             // requested to be ignored for another reason. (eg. a one-way tile)
@@ -103,7 +104,8 @@
             friction = collision.collidedWith.friction;
         }
         
-        if (friction != 0 && ![collision.collidedWith ignoresCollision:collision]) {
+        if (friction != 0 ||
+            ([collision.collidedWith respondsToSelector:@selector(ignoresCollision:)] && ![collision.collidedWith ignoresCollision:collision])) {
             
             // get the tanget from the normal
             CGPoint tangent = [self tangentOfPoint:collision.normal];
