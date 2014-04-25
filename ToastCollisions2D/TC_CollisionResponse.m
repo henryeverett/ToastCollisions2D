@@ -40,10 +40,11 @@
         [self.delegate collisionDetected:collision];
     }
     
-    /* Respond to a collision with a static node. (ie. a wall/ground tile) */
-    if (collision.collidedWith.tcStatic) {
+    /* Respond to a collision with an impassable node */
+    if (!collision.collidedWith.tcPassable) {
         [self respondToStaticCollision:collision];
     }
+    
 
 }
 

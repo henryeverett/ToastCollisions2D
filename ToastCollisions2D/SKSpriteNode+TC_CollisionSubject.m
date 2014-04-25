@@ -21,6 +21,13 @@
     return [objc_getAssociatedObject(self, @selector(tcStatic)) boolValue];
 }
 
+-(void)setTcPassable:(BOOL)tcPassable {
+    objc_setAssociatedObject(self,@selector(tcPassable),[NSNumber numberWithBool:tcPassable],OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (BOOL)tcPassable {
+    return [objc_getAssociatedObject(self, @selector(tcPassable)) boolValue];
+}
+
 - (void)setTcVelocity:(CGPoint)tcVelocity {
     objc_setAssociatedObject(self,@selector(tcVelocity),[NSValue valueWithCGPoint:tcVelocity],OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

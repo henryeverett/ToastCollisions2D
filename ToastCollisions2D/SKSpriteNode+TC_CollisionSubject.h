@@ -31,12 +31,15 @@
 @interface SKSpriteNode (TC_CollisionSubject) <TCCollisionSubjectDelegate>
 
 @property (nonatomic, assign) BOOL tcStatic;
+@property (nonatomic, assign) BOOL tcPassable;
 @property (nonatomic, assign) CGPoint tcVelocity;
 @property (nonatomic, strong) TC_CollisionResponse *tcCollisionResponse;
 
 /* Define getters and setters. (Needed for category properties.) */
 - (void)setTcStatic:(BOOL)tcStatic;
 - (BOOL)tcStatic;
+- (void)setTcPassable:(BOOL)tcPassable;
+- (BOOL)tcPassable;
 - (void)setTcVelocity:(CGPoint)tcVelocity;
 - (CGPoint)tcVelocity;
 - (TC_CollisionResponse *)tcCollisionResponse;
