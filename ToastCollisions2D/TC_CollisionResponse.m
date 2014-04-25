@@ -87,7 +87,7 @@
             }
             
             // Adjust the position
-            if (remove > 0) {
+            if (heightToRemove > 0) {
                 self.delegate.position = CGPointMake(self.delegate.position.x,
                                                      collision.collidedWith.frame.origin.y +
                                                      collision.collidedWith.frame.size.height +
