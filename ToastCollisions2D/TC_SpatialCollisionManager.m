@@ -7,6 +7,7 @@
 //
 
 #import "TC_SpatialCollisionManager.h"
+#import "SKSpriteNode+TC_CollisionSubject.h"
 
 @interface TC_SpatialCollisionManager()
 
@@ -66,9 +67,9 @@
     
     // Get the four corner positions of the GameNode's frame.
     CGPoint nodeTopLeftCorner = positionInView;
-    CGPoint nodeBottomLeftCorner = CGPointMake(positionInView.x, positionInView.x + node.frame.size.height);
-    CGPoint nodeBottomRightCorner = CGPointMake(positionInView.x + node.frame.size.width, positionInView.y + node.frame.size.height);
-    CGPoint nodeTopRightCorner = CGPointMake(positionInView.x + node.frame.size.width, nodeTopLeftCorner.y);
+    CGPoint nodeBottomLeftCorner = CGPointMake(positionInView.x, positionInView.x + node.tcBoundingBox.size.height);
+    CGPoint nodeBottomRightCorner = CGPointMake(positionInView.x + node.tcBoundingBox.size.width, positionInView.y + node.tcBoundingBox.size.height);
+    CGPoint nodeTopRightCorner = CGPointMake(positionInView.x + node.tcBoundingBox.size.width, nodeTopLeftCorner.y);
 
     // For each corner, create a bucket (if it doesn't exist).
     [self createBucketForPoint:nodeBottomLeftCorner andAddToArray:nodeBuckets];

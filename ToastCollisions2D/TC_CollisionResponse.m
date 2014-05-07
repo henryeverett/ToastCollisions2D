@@ -79,19 +79,19 @@
         
             // If the slope graduates to the left, adjust the position of the node based on the height of the slope at it's left edge.
             if (collision.collidedWith.rightSlopeHeight < collision.collidedWith.leftSlopeHeight) {
-                heightToRemove = collision.collidedWith.frame.size.height - [collision.collidedWith heightAtXPosition:self.delegate.frame.origin.x - (self.delegate.frame.size.width/2)];
+                heightToRemove = collision.collidedWith.tcBoundingBox.size.height - [collision.collidedWith heightAtXPosition:self.delegate.tcBoundingBox.origin.x - (self.delegate.tcBoundingBox.size.width/2)];
                 
             // If the slope graduates to the right, adjust the position of the node based on the height of the slope at it's right edge.
             } else {
-                heightToRemove = collision.collidedWith.frame.size.height - [collision.collidedWith heightAtXPosition:self.delegate.position.x + self.delegate.frame.size.width];
+                heightToRemove = collision.collidedWith.tcBoundingBox.size.height - [collision.collidedWith heightAtXPosition:self.delegate.position.x + self.delegate.tcBoundingBox.size.width];
             }
             
             // Adjust the position
             if (heightToRemove > 0) {
                 self.delegate.position = CGPointMake(self.delegate.position.x,
-                                                     collision.collidedWith.frame.origin.y +
-                                                     collision.collidedWith.frame.size.height +
-                                                     (self.delegate.frame.size.height/2) - heightToRemove);
+                                                     collision.collidedWith.tcBoundingBox.origin.y +
+                                                     collision.collidedWith.tcBoundingBox.size.height +
+                                                     (self.delegate.tcBoundingBox.size.height/2) - heightToRemove);
             }
             
             

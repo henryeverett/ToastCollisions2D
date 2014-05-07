@@ -35,6 +35,27 @@
     return [objc_getAssociatedObject(self, @selector(tcVelocity)) CGPointValue];
 }
 
+- (void)setTcBoundingBoxSize:(CGSize)tcBoundingBoxSize {
+    objc_setAssociatedObject(self,@selector(tcBoundingBoxSize),[NSValue valueWithCGSize:tcBoundingBoxSize],OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (CGSize)tcBoundingBoxSize {
+    
+    CGSize boundingBoxSize = [objc_getAssociatedObject(self, @selector(tcBoundingBoxSize)) CGSizeValue];
+    
+    if (!boundingBoxSize.width || !boundingBoxSize.height) {
+        boundingBoxSize = self.size;
+    }
+    
+    return boundingBoxSize;
+}
+
+- (CGRect)tcBoundingBox {
+    
+    CGRect newFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.size.width, self.size.height);
+    
+    return CGRectInset(newFrame, (self.size.height - self.tcBoundingBoxSize.height) / 2, (self.size.width - self.tcBoundingBoxSize.width) / 2);
+}
+
 - (void)setTcCollisionResponse:(TC_CollisionResponse *)tcCollisionResponse {
     objc_setAssociatedObject(self,@selector(tcCollisionResponse),tcCollisionResponse,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -58,11 +79,11 @@
     
     // If slope is from left to right, add tile width to equation
     if (self.leftSlopeHeight > self.rightSlopeHeight) {
-        addTileWidth = self.size.width;
+        addTileWidth = self.tcBoundingBox.size.width;
     }
     
     // Work out the position of the object on the tile
-    float pos = ( XPosition - self.position.x + addTileWidth ) / self.size.width;
+    float pos = ( XPosition - self.position.x + addTileWidth ) / self.tcBoundingBox.size.width;
     
     // Work out the floor height at that position
     float floorHeight = (1-pos) * self.leftSlopeHeight + pos * self.rightSlopeHeight;
@@ -87,5 +108,24 @@
     
 }
 
+- (void)attachDebugRectWithSize:(CGSize)s {
+    CGPathRef bodyPath = CGPathCreateWithRect( CGRectMake(-s.width/2, -s.height/2, s.width,   s.height),nil);
+    [self attachDebugFrameFromPath:bodyPath];
+    CGPathRelease(bodyPath);
+}
+
+- (void)attachDebugFrameFromPath:(CGPathRef)bodyPath {
+    //if (kDebugDraw==NO) return;
+    
+    for (SKShapeNode *shape in self.children) {
+        [shape removeFromParent];
+    }
+    
+    SKShapeNode *shape = [SKShapeNode node];
+    shape.path = bodyPath;
+    shape.strokeColor = [SKColor colorWithRed:1.0 green:0 blue:0 alpha:0.5];
+    shape.lineWidth = 1.0;
+    [self addChild:shape];
+}
 
 @end

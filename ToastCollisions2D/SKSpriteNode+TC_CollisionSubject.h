@@ -33,6 +33,7 @@
 @property (nonatomic, assign) BOOL tcStatic;
 @property (nonatomic, assign) BOOL tcPassable;
 @property (nonatomic, assign) CGPoint tcVelocity;
+@property (nonatomic, assign) CGSize tcBoundingBoxSize;
 @property (nonatomic, strong) TC_CollisionResponse *tcCollisionResponse;
 
 /* Define getters and setters. (Needed for category properties.) */
@@ -42,6 +43,7 @@
 - (BOOL)tcPassable;
 - (void)setTcVelocity:(CGPoint)tcVelocity;
 - (CGPoint)tcVelocity;
+- (CGRect)tcBoundingBox;
 - (TC_CollisionResponse *)tcCollisionResponse;
 /* Calculate the height of a slope at a given X coordinate. */
 - (float)heightAtXPosition:(float)XPosition;
@@ -49,5 +51,9 @@
 - (BOOL)isSlope;
 /* Apply any calculated velocity to the node's position. */
 - (void)applyPositionWithDelta:(NSTimeInterval)delta;
+
+- (void)attachDebugRectWithSize:(CGSize)s;
+
+- (void)attachDebugFrameFromPath:(CGPathRef)bodyPath;
 
 @end

@@ -82,7 +82,7 @@
                 CGRect projection = [self projectedVelocityAABBForNode:nodeA withDelta:delta tall:checkTall];
                 
                 // If nodeA's projection rectangle intersects with nodeB, they will collide.
-                if (CGRectIntersectsRect(projection, nodeB.frame)) {
+                if (CGRectIntersectsRect(projection, nodeB.tcBoundingBox)) {
                     
                     // Get the distance between the two nodes
                     float separationDistance = [self distanceBetweenNodeA:nodeA andNodeB:nodeB];
@@ -91,7 +91,7 @@
                     TC_Collision *collision = [[TC_Collision alloc] init];
                     collision.collidedWith = nodeB;
                     collision.yAxisOnly = checkTall; // Pass in whether we are checking the tall or short section of the cross shape
-                    collision.normal = [self normalFromRectA:nodeA.frame toRectB:nodeB.frame]; // Get the normal of the collision
+                    collision.normal = [self normalFromRectA:nodeA.tcBoundingBox toRectB:nodeB.tcBoundingBox]; // Get the normal of the collision
                     collision.distance = separationDistance;
                     
                     // Get the normal velocity of nodeA
@@ -119,16 +119,16 @@
     // TODO: These should probably be a percentage of the node's frame dimensions
     if (tall) {
         
-        nodeBounds = CGRectMake(node.frame.origin.x + 5,
-                                node.frame.origin.y,
-                                node.frame.size.width - 10,
-                                node.frame.size.height);
+        nodeBounds = CGRectMake(node.tcBoundingBox.origin.x + 5,
+                                node.tcBoundingBox.origin.y,
+                                node.tcBoundingBox.size.width - 10,
+                                node.tcBoundingBox.size.height);
     } else {
         
-        nodeBounds = CGRectMake(node.frame.origin.x,
-                                node.frame.origin.y - 5,
-                                node.frame.size.width,
-                                node.frame.size.height - 10);
+        nodeBounds = CGRectMake(node.tcBoundingBox.origin.x,
+                                node.tcBoundingBox.origin.y - 5,
+                                node.tcBoundingBox.size.width,
+                                node.tcBoundingBox.size.height - 10);
     }
     
     // Get the predicted position of the node
@@ -148,17 +148,17 @@
 
 - (CGFloat)distanceBetweenNodeA:(SKSpriteNode *)nodeA andNodeB:(SKSpriteNode*)nodeB {
     
-    CGPoint halfA = CGPointMake(CGRectGetWidth(nodeA.frame)/2, CGRectGetHeight(nodeA.frame)/2);
-    CGPoint halfB = CGPointMake(CGRectGetWidth(nodeB.frame)/2, CGRectGetHeight(nodeB.frame)/2);
+    CGPoint halfA = CGPointMake(CGRectGetWidth(nodeA.tcBoundingBox)/2, CGRectGetHeight(nodeA.tcBoundingBox)/2);
+    CGPoint halfB = CGPointMake(CGRectGetWidth(nodeB.tcBoundingBox)/2, CGRectGetHeight(nodeB.tcBoundingBox)/2);
     
     CGPoint combinedHalves = CGPointAdd(halfA, halfB);
 
-    CGPoint normal = [self normalFromRectA:nodeA.frame toRectB:nodeB.frame];
+    CGPoint normal = [self normalFromRectA:nodeA.tcBoundingBox toRectB:nodeB.tcBoundingBox];
     
     CGPoint normalStart = CGPointMake(normal.x * combinedHalves.x, normal.y * combinedHalves.y);
-    normalStart = CGPointAdd(normalStart, [self centerOfRect:nodeB.frame]);
+    normalStart = CGPointAdd(normalStart, [self centerOfRect:nodeB.tcBoundingBox]);
 
-    CGPoint planeNormal = CGPointSubtract([self centerOfRect:nodeA.frame], normalStart);
+    CGPoint planeNormal = CGPointSubtract([self centerOfRect:nodeA.tcBoundingBox], normalStart);
     
     return [self dotProductOfPointA:planeNormal andPointB:normal];
 
