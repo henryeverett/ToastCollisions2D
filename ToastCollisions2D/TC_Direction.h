@@ -1,5 +1,5 @@
 //
-//  Direction.h
+//  TC_Direction.h
 //  ToastCollisions2D
 //
 //  Created by Henry Everett on 13/04/2014.
