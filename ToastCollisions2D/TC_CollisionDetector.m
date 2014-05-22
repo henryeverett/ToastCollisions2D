@@ -104,7 +104,7 @@
                     
                     // Respond to the collision
                     [nodeA.tcCollisionResponse respondToCollision:collision withDelta:delta];
-
+                    [nodeB.tcCollisionResponse respondToCollision:collision withDelta:delta];
                 }
             }
         }

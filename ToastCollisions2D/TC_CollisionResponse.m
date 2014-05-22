@@ -11,6 +11,9 @@
 #import "TC_Collision.h"
 #import "SKTUtils.h"
 
+#import "Katsup.h"
+#import "Player.h"
+
 @interface TC_CollisionResponse ()
 
 /* Adjusts the delegate node's position based on a collision with a static object (eg. a tile) */
@@ -34,10 +37,15 @@
 }
 
 - (void)respondToCollision:(TC_Collision *)collision withDelta:(NSTimeInterval)delta {
+
     
     /* Respond to collisions with other dynamic objects. This hook allows you to define this behaviour youself. */
     if ([self.delegate respondsToSelector:@selector(collisionDetected:)]) {
         [self.delegate collisionDetected:collision];
+    }
+    
+    if ([collision.collidedWith respondsToSelector:@selector(collisionDetected:)]) {
+        [collision.collidedWith collisionDetected:collision];
     }
     
     /* Respond to a collision with an impassable node */
