@@ -39,7 +39,7 @@
     if ([self.delegate respondsToSelector:@selector(collisionDetected:)]) {
         [self.delegate collisionDetected:collision];
     }
-    
+
     /* Respond to a collision with an impassable node */
     if (!collision.collidedWith.tcPassable) {
         [self respondToStaticCollision:collision];
