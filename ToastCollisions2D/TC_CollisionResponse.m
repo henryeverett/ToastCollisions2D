@@ -40,10 +40,6 @@
         [self.delegate collisionDetected:collision];
     }
     
-    if ([collision.collidedWith respondsToSelector:@selector(collisionDetected:)]) {
-        [collision.collidedWith collisionDetected:collision];
-    }
-    
     /* Respond to a collision with an impassable node */
     if (!collision.collidedWith.tcPassable) {
         [self respondToStaticCollision:collision];
