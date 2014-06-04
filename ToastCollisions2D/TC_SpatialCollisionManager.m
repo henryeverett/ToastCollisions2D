@@ -26,7 +26,7 @@
     if (self) {
         
         // Set up defaults
-        self.gridCellSize = 200;
+        self.gridCellSize = 400;
         
         self.rows = (viewSize.height / self.gridCellSize) + 1;
         self.columns = (viewSize.width / self.gridCellSize) + 1;
