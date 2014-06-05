@@ -1,44 +1,28 @@
 //
-//  SpatialCollisionManager.h
-//  ToastCollisions2D
+//  TC_SpatialCollisionManager.h
+//  Pixel Toast
 //
-//  Created by Henry Everett on 25/03/2014.
+//  Created by Henry Everett on 04/06/2014.
 //  Copyright (c) 2014 Henry Everett. All rights reserved.
 //
-//  Generates a grid in the game screen, splitting GameObjects into separate
-//  'buckets' (or grid squares) for broad phase collision detection.
-//
-//  ** Visual Respresentation **
-//  (Objects can span multiple grid spaces, eg. Enemy1 below)
-//
-//  [ Buckets ]
-//    -- [1]
-//       -- [Player]
-//       -- [Enemy1]
-//    -- [2]
-//       -- [Enemy1]
-//       -- [Enemy2]
-//    -- [3]
-//       -- [Enemy3]
+// The Spatial Collision Manager now uses a quad-tree structure. This allows unrestricted node size and improves performance.
 
 #import <SpriteKit/SpriteKit.h>
 
-@class GameObject;
-
 @interface TC_SpatialCollisionManager : NSObject
 
-@property (nonatomic, assign) NSUInteger gridCellSize;
-@property (nonatomic, assign) NSUInteger columns;
-@property (nonatomic, assign) NSUInteger rows;
-@property (nonatomic, strong) NSMutableDictionary *buckets;
+@property (nonatomic, assign) NSInteger depth;
+@property (nonatomic, assign) CGRect rect;
+@property (nonatomic, strong) NSMutableArray *objects;
+@property (nonatomic, strong) NSMutableArray *buckets;
 
-/* Sets up the SCM with the size of the view it will be sweeping. */
-- (id)initWithViewSize:(CGSize)viewSize;
-/* Resets the buckets dictionary to prepare for a new sweep. */
+/* Initialize a new quadtree with a depth and area. */
+- (id)initWithLevel:(NSInteger)level rect:(CGRect)rect;
+/* Reset the buckets of the quadtree and remove it's objects recursively. */
 - (void)resetBuckets;
-/* Assigns a grid square for the node that is passed in. */
+/* Register a new node and calculate it's address within the quadtree. */
 - (void)registerNode:(SKSpriteNode *)node;
-/* Finds other objects in the same bucket for narrow-phase collision detection. */
+/* Find other nodes within the same bucket. */
 - (NSArray *)getNodesNearToNode:(SKSpriteNode *)node;
 
 @end
