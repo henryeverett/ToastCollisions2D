@@ -14,6 +14,8 @@
 #import "TC_Direction.h"
 #import "TC_CollisionResponse.h"
 
+#import "TC_SpatialCollisionManager.h"
+
 // Private methods
 @interface TC_CollisionDetector()
 
@@ -40,8 +42,8 @@
     
     self = [super init];
     if (self) {
-        
-        self.spatialCollisionManager = [[TC_SpatialCollisionManager alloc] initWithViewSize:viewSize];
+    
+        self.spatialCollisionManager = [[TC_SpatialCollisionManager alloc] initWithLevel:0 rect:CGRectMake(0, 0, viewSize.width, viewSize.height)];
         
     }
     return self;

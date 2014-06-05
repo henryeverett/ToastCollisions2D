@@ -1,116 +1,160 @@
 //
-//  SpatialCollisionManager.m
-//  ToastCollisions2D
+//  TC_SpatialCollisionManager.m
+//  Pixel Toast
 //
-//  Created by Henry Everett on 25/03/2014.
+//  Created by Henry Everett on 04/06/2014.
 //  Copyright (c) 2014 Henry Everett. All rights reserved.
 //
 
 #import "TC_SpatialCollisionManager.h"
 #import "SKSpriteNode+TC_CollisionSubject.h"
 
-@interface TC_SpatialCollisionManager()
+const NSInteger max_objects = 10;
+const NSInteger max_depth = 5;
 
-/* Establish which buckets the GameNode is occupying. */
-- (NSArray *)getBucketAddressesForNode:(SKSpriteNode *)node;
-/* Create a bucket if it doesn't already exist. */
-- (void)createBucketForPoint:(CGPoint)point andAddToArray:(NSMutableArray *)buckets;
+@interface TC_SpatialCollisionManager ()
+
+/* Split a bucket into four sub-buckets. Private method. */
+- (void)split;
+/* Get the bucket address for a particular node. Private method.  */
+- (NSInteger)getBucketAddressForNode:(SKSpriteNode *)node;
 
 @end
 
 @implementation TC_SpatialCollisionManager
 
-- (id)initWithViewSize:(CGSize)viewSize {
+- (id)initWithLevel:(NSInteger)depth rect:(CGRect)rect {
     
     self = [super init];
     if (self) {
-        
-        // Set up defaults
-        self.gridCellSize = 400;
-        
-        self.rows = (viewSize.height / self.gridCellSize) + 1;
-        self.columns = (viewSize.width / self.gridCellSize) + 1;
-        
-        [self resetBuckets];
+        self.depth = depth;
+        self.rect = rect;
+        self.objects = [[NSMutableArray alloc] init];
+        self.buckets = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)resetBuckets {
     
-    // Release buckets array and re-init
-    self.buckets = nil;
-    self.buckets = [[NSMutableDictionary alloc] init];
+    // Remove all objects from current bucket.
+    [self.objects removeAllObjects];
     
-    // Create blank arrays for future population.
-    for (NSUInteger i = 0; i < self.rows * self.columns; i++) {
-        [self.buckets setObject:[[NSMutableArray alloc] init] forKey:[NSString stringWithFormat:@"%lu",(unsigned long)i]];
+    // Recursively reset all sub-buckets.
+    for (NSInteger i = 0; i < self.buckets.count; i++) {
+        
+        if (self.buckets[i]) {
+            [self.buckets[i] resetBuckets];
+            [self.buckets[i] removeAllObjects];
+        }
     }
+}
+
+- (void)split {
+    
+    // Get dimensions of the bucket size
+    NSInteger halfWidth = self.rect.size.width/2;
+    NSInteger halfHeight = self.rect.size.height/2;
+    NSInteger x = self.rect.origin.x;
+    NSInteger y = self.rect.origin.y;
+    
+    // Create the sub-buckets
+    self.buckets[0] = [[TC_SpatialCollisionManager alloc] initWithLevel:self.depth+1 rect:CGRectMake(x + halfWidth, y, halfWidth, halfHeight)];
+    self.buckets[1] = [[TC_SpatialCollisionManager alloc] initWithLevel:self.depth+1 rect:CGRectMake(x, y, halfWidth, halfHeight)];
+    self.buckets[2] = [[TC_SpatialCollisionManager alloc] initWithLevel:self.depth+1 rect:CGRectMake(x, y - halfHeight, halfWidth, halfHeight)];
+    self.buckets[3] = [[TC_SpatialCollisionManager alloc] initWithLevel:self.depth+1 rect:CGRectMake(x + halfWidth, y - halfHeight, halfWidth, halfHeight)];
+}
+
+- (NSInteger)getBucketAddressForNode:(SKSpriteNode *)node {
+    
+    // Set index default value to -1.
+    // This signals that the node cannot fit in a sub-node and is in this depth's main bucket
+    NSInteger index = -1;
+    
+    // Set up some useful vars
+    CGFloat verticalMidpoint = CGRectGetMidX(self.rect);
+    CGFloat horizontalMidpoint = CGRectGetMidY(self.rect);
+    CGRect frame = node.tcBoundingBox;
+    
+    // Define the top and bottom half of the bucket.
+    BOOL top = (frame.origin.y > horizontalMidpoint && frame.origin.y + frame.size.height > horizontalMidpoint);
+    BOOL bottom = (frame.origin.y < horizontalMidpoint);
+    
+    // Check whether the node lies within the left and right half of the current bucket.
+    // Assign a bucket if it fits in a quadrant.
+    if (frame.origin.x < verticalMidpoint && frame.origin.x + frame.size.width < verticalMidpoint) {
+        if (top) {
+            index = 1;
+        } else if (bottom) {
+            index = 2;
+        }
+    } else if (frame.origin.x > verticalMidpoint) {
+        if (top) {
+            index = 0;
+        } else if (bottom) {
+            index = 3;
+        }
+    }
+    
+    return index;
 }
 
 - (void)registerNode:(SKSpriteNode *)node {
-
-    NSArray *bucketAddresses = [self getBucketAddressesForNode:node];
     
-    // For each of the bucket addresses for the game node, add the game node to those addresses in the buckets array.
-    for (NSNumber *address in bucketAddresses) {
-        [self.buckets[address.stringValue] addObject:node];
+    // If there are sub-buckets, get an address for the node.
+    if (self.buckets.count && self.buckets[0]) {
+        
+        NSInteger index = [self getBucketAddressForNode:node];
+        
+        // If the node fits in a sub-bucket, add to the bucket.
+        if (index != -1) {
+            self.buckets[index] = node;
+            return;
+        }
     }
-    
-}
 
-- (NSArray *)getBucketAddressesForNode:(SKSpriteNode *)node {
-
-    NSMutableArray *nodeBuckets = [[NSMutableArray alloc] init];
+    [self.objects addObject:node];
     
-    CGPoint positionInView = node.position;
-    
-    // Get the four corner positions of the GameNode's frame.
-    CGPoint nodeTopLeftCorner = positionInView;
-    CGPoint nodeBottomLeftCorner = CGPointMake(positionInView.x, positionInView.x + node.tcBoundingBox.size.height);
-    CGPoint nodeBottomRightCorner = CGPointMake(positionInView.x + node.tcBoundingBox.size.width, positionInView.y + node.tcBoundingBox.size.height);
-    CGPoint nodeTopRightCorner = CGPointMake(positionInView.x + node.tcBoundingBox.size.width, nodeTopLeftCorner.y);
-
-    // For each corner, create a bucket (if it doesn't exist).
-    [self createBucketForPoint:nodeBottomLeftCorner andAddToArray:nodeBuckets];
-    [self createBucketForPoint:nodeTopLeftCorner andAddToArray:nodeBuckets];
-    [self createBucketForPoint:nodeBottomRightCorner andAddToArray:nodeBuckets];
-    [self createBucketForPoint:nodeTopRightCorner andAddToArray:nodeBuckets];
-    
-    return nodeBuckets;
-    
-}
-
-- (void)createBucketForPoint:(CGPoint)point andAddToArray:(NSMutableArray *)buckets {
-    
-    // Calculate the bucket's address
-    NSNumber *newBucketAddress = [NSNumber numberWithInt:(NSInteger)(floorf(point.x / self.gridCellSize)) + (floorf(point.y / self.gridCellSize)) * self.columns];
-
-    // Check if bucket already exists in the buckets array
-    NSUInteger index = [buckets indexOfObjectPassingTest:^BOOL(NSNumber *bucketAddress, NSUInteger idx, BOOL *stop) {
-        return  [newBucketAddress integerValue] == [bucketAddress integerValue];
-    }];
-    
-    // If it doesn't exist, create it.
-    if (index == NSNotFound) {
-        [buckets addObject:newBucketAddress];
+    // If the maximum object cluster size has been reached and we are still above the max depth,
+    // split the current bucket into sub buckets.
+    if (self.objects.count > max_objects && self.depth < max_depth) {
+        
+        // Split bucket if not already split
+        if (self.buckets.count && !self.buckets[0]) {
+            [self split];
+        }
+        
+        NSInteger i = 0;
+        
+        // Recursively loop downwards until the node is in the correct bucket.
+        while (i < self.objects.count) {
+            
+            NSInteger index = [self getBucketAddressForNode:[self.objects objectAtIndex:i]];
+            
+            if (index != -1 && self.buckets.count) {
+                [self.buckets[index] registerNode:self.objects[i]];
+                [self.objects removeObjectAtIndex:i];
+            } else {
+                i++;
+            }
+        }
     }
-    
 }
 
 - (NSArray *)getNodesNearToNode:(SKSpriteNode *)node {
- 
-    NSMutableArray *nearbyNodes = [[NSMutableArray alloc] init];
-
-    NSArray *bucketAddresses = [self getBucketAddressesForNode:node];
     
-    // Get all the of the other nodes in the buckets that the node inhabits.
-    for (NSNumber *address in bucketAddresses) {
-        [nearbyNodes addObjectsFromArray:self.buckets[address.stringValue]];
-        
+    // Get the address of the node
+    NSInteger index = [self getBucketAddressForNode:node];
+    NSMutableArray *collected = [[NSMutableArray alloc] init];
+    
+    // Recurseively look for nodes occupying same bucket.
+    if (index != -1 && self.buckets.count && self.buckets[0]) {
+        [collected addObjectsFromArray:[self.buckets[index] getNodesNearToNode:node]];
     }
     
-    return nearbyNodes;
+    [collected addObjectsFromArray:self.objects];
+    
+    return collected;
 }
 
 @end
